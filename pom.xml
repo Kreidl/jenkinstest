@@ -72,6 +72,9 @@
 			        <from>
 			            <image>adoptopenjdk/openjdk13:jre13u-alpine-nightly</image>
 			        </from>
+			        <to>
+			        	<image>jenkinstest</image>
+			        </to>
 			    </configuration>
 			    <executions>
 			        <execution>
