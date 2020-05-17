@@ -85,7 +85,7 @@ pipeline {
 							sh 'echo ${dockerHubPwd}'
 							sh 'docker login -u luke19 -p ${dockerHubPwd}'
 							
-							sh 'mvn compile jib:build -Djib.from.auth.username=luke19 -Djib.from.auth.password=${env.dockerHubPwd}'
+							sh 'mvn compile jib:build'
 						}
 						
 					}
