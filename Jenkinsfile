@@ -78,7 +78,7 @@ pipeline {
 			{				
 				catchError
 				{
-					sh 'docker build -t jenkinstest:%BUILD_NUMBER% . '
+					sh 'docker build -t jenkinstest:${BUILD_NUMBER} . '
 				}
 			}
 			post
