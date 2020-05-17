@@ -7,19 +7,13 @@ pipeline {
 		{			
 			steps
 			{			
-					withMaven(maven: 'localMaven')
+				withMaven(maven: 'localMaven')
+				{
+					catchError
 					{
-						catchError
-						{
-							sh 'mvn clean compile'
-							junit testResults: '**/target/*-reports/TEST-*.xml'
-
-					        def java = scanForIssues tool: java()
-					        def javadoc = scanForIssues tool: javaDoc()
-					        
-					        publishIssues issues: [java, javadoc], filters: [includePackage('io.jenkins.plugins.analysis.*')]
-						}
-					}				
+						sh 'mvn clean compile'
+					}
+				}				
 			}
 			post
 			{
