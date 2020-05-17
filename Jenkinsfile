@@ -79,9 +79,12 @@ pipeline {
 			{				
 				withMaven(maven: 'localMaven')
 				{
-					catchError
+					withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')])
 					{
-						sh 'mvn compile jib:build'
+						catchError
+						{
+							sh 'mvn compile jib:build'
+						}
 					}
 				}
 			}
