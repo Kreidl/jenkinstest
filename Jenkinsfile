@@ -1,4 +1,11 @@
 pipeline {
+	environment {
+     checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
+     pmd = scanForIssues tool: pmdParser(pattern: '**/target/pmd.xml')
+     cpd = scanForIssues tool: cpd(pattern: '**/target/cpd.xml')
+     spotbugs = scanForIssues tool: spotBugs(pattern: '**/target/findbugsXml.xml')
+     maven = scanForIssues tool: mavenConsole()
+   	}
 	agent any
 	
 	stages
@@ -45,23 +52,23 @@ pipeline {
 				{
 		        	sh "${mvnHome}/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
 				}
-		        def checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
-		        publishIssues issues: [checkstyle]
+		        
+		        publishIssues issues: [env.checkstyle]
 		   
-		        def pmd = scanForIssues tool: pmdParser(pattern: '**/target/pmd.xml')
-		        publishIssues issues: [pmd]
 		        
-		        def cpd = scanForIssues tool: cpd(pattern: '**/target/cpd.xml')
-		        publishIssues issues: [cpd]
+		        publishIssues issues: [env.pmd]
 		        
-		        def spotbugs = scanForIssues tool: spotBugs(pattern: '**/target/findbugsXml.xml')
-		        publishIssues issues: [spotbugs]
+		        
+		        publishIssues issues: [env.cpd]
+		        
+		        
+		        publishIssues issues: [env.spotbugs]
 		
-		        def maven = scanForIssues tool: mavenConsole()
-		        publishIssues issues: [maven]
+		        
+		        publishIssues issues: [env.maven]
 		        
 		        publishIssues id: 'analysis', name: 'All Issues', 
-		            issues: [checkstyle, pmd, spotbugs], 
+		            issues: [env.checkstyle, env.pmd, env.spotbugs], 
 		            filters: [includePackage('io.jenkins.plugins.analysis.*')]
 	        }
 	    }
