@@ -50,7 +50,7 @@ pipeline {
 	        {
 				withMaven(maven: 'localMaven')
 				{
-		        	sh "${mvnHome}/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
+		        	sh "mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
 				}
 		        
 		        publishIssues issues: [env.checkstyle]
