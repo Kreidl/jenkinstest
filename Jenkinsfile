@@ -76,14 +76,14 @@ pipeline {
 		{			
 			steps
 			{				
-				withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')])
-				{
-					sh 'docker login -u luke19 -p ${dockerHubPwd}'
-				}
 				catchError
 				{
 					withMaven(maven: 'localMaven')
 					{
+						withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')])
+						{
+							sh 'docker login -u luke19 -p ${dockerHubPwd}'
+						}
 						sh 'mvn compile jib:build'
 					}
 				}

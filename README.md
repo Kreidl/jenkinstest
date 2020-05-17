@@ -5,4 +5,4 @@ PlugIns needed:
 Pipeline Maven Integration<br/>
 
 Additional:
-The Docker credentials stored as docker-pwd
+The Docker credentials stored as docker-pwd under the variable dockerHubPwd
