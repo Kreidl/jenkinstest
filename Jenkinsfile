@@ -68,8 +68,7 @@ pipeline {
 		        publishIssues issues: [env.maven]
 		        
 		        publishIssues id: 'analysis', name: 'All Issues', 
-		            issues: [env.checkstyle, env.pmd, env.spotbugs], 
-		            filters: [includePackage('io.jenkins.plugins.analysis.*')]
+		            issues: [env.checkstyle, env.pmd, env.spotbugs]
 	        }
 	    }
 		
