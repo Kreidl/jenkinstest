@@ -78,17 +78,7 @@ pipeline {
 			{				
 				catchError
 				{
-					withMaven(maven: 'localMaven')
-					{
-						withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')])
-						{
-							sh 'echo ${dockerHubPwd}'
-							sh 'docker login -u luke19 -p ${dockerHubPwd}'
-							
-							sh 'mvn package'
-						}
-						
-					}
+					sh 'docker build -t jenkinstest:%BUILD_NUMBER% . '
 				}
 			}
 			post
