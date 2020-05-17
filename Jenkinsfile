@@ -37,11 +37,13 @@ pipeline {
                 }
             }
 		}
-		stage ('Analysis') {
-	        def mvnHome = tool 'mvn-default'
-	
-	        sh "${mvnHome}/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
-	
+		stage ('Analysis')
+		{
+	        
+			withMaven(maven: 'localMaven')
+			{
+	        	sh "${mvnHome}/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
+			}
 	        def checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
 	        publishIssues issues: [checkstyle]
 	   
