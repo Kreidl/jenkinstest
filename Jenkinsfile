@@ -43,35 +43,7 @@ pipeline {
                      }
                 }
             }
-		}
-		stage ('Analysis')
-		{
-	        steps
-	        {
-				withMaven(maven: 'localMaven')
-				{
-		        	sh "mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
-				}
-		        
-		        publishIssues issues: [env.checkstyle]
-		   
-		        
-		        publishIssues issues: [env.pmd]
-		        
-		        
-		        publishIssues issues: [env.cpd]
-		        
-		        
-		        publishIssues issues: [env.spotbugs]
-		
-		        
-		        publishIssues issues: [env.maven]
-		        
-		        publishIssues id: 'analysis', name: 'All Issues', 
-		            issues: [env.checkstyle, env.pmd, env.spotbugs]
-	        }
-	    }
-		
+		}	
 		stage ('Testing Stage')
 		{			
 			steps
