@@ -1,11 +1,4 @@
 pipeline {
-	environment {
-     checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
-     pmd = scanForIssues tool: pmdParser(pattern: '**/target/pmd.xml')
-     cpd = scanForIssues tool: cpd(pattern: '**/target/cpd.xml')
-     spotbugs = scanForIssues tool: spotBugs(pattern: '**/target/findbugsXml.xml')
-     maven = scanForIssues tool: mavenConsole()
-   	}
 	agent any
 	
 	stages
