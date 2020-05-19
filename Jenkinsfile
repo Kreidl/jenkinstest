@@ -103,5 +103,25 @@ pipeline {
                 }
             }
 		}
+		stage ('Image Analyzing stage')
+		{			
+			steps
+			{				
+				catchError
+				{
+					sh 'anchore-cli image add jenkinstest:${BUILD_NUMBER}' //add image to anchore
+					sh 'anchore-cli image wait jenkinstest:${BUILD_NUMBER}' //wait for analyzing
+					sh 'anchore-cli image vuln jenkinstest:${BUILD_NUMBER} os' //get vulnerabilities
+					sh 'anchore-cli evaluate check jenkinstest:${BUILD_NUMBER} --detail' //perform policy evaluation
+				}
+			}
+			post
+			{
+                success
+				{
+					 echo 'Packaging stage successful'
+                }
+            }
+		}
 	}
 }
