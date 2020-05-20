@@ -39,7 +39,7 @@ node {
       anchore name: 'anchore_images'
   	}
     catch (exc) {
-      error('Packaging failed. ' + err.message)
+      error('Packaging failed. ' + exc.message)
     }
   }			
 
