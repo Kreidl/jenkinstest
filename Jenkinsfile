@@ -24,7 +24,7 @@ node {
 
   stage ('Packaging Stage') {
     try {
-  	  sh "docker build -t containerBuild ."
+  	  sh "docker build -t ${containerBuild} ."
   	}
     catch (exc) {
       error('Packaging failed')
