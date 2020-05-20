@@ -31,7 +31,7 @@ node {
 	  }
   	}
     catch (exc) {
-      error('Packaging failed')
+      error('Packaging failed' + exc.message)
     }
   }
   
