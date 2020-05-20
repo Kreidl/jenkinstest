@@ -1,7 +1,7 @@
 node {
   def app
   def mvnTool = tool 'localMaven'
-  def containerBuild = 'jenkinstest:${BUILD_NUMBER}'
+  def containerBuild = "jenkinstest:${BUILD_NUMBER}"
 	
   stage ('Compile Stage') {
     try {
