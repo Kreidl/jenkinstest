@@ -10,6 +10,11 @@ Change the name of the configured Maven in pipeline to the maven name you gave i
 Docker and Docker-compose (Anchore container) installed<br/>
 Add the docker installation and username/password config for dockerregistry and also the url for dockerregistry (atm it is dockerhub)
 
+The repo on dockerhub should be public
+
+If there is this error: Cannot autolaunch D-Bus without X11 $DISPLAY
+Use: sudo apt-get remove -y golang-docker-credential-helpers
+
 anchore docker container installed (https://github.com/anchore/anchore-cli)<br/>
 
 For Anchore container use these two commands:
