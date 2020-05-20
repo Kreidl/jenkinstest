@@ -1,6 +1,7 @@
 node {
   def app
   def mvnTool = tool 'localMaven'
+  def containerBuild = 'jenkinstest:${BUILD_NUMBER}'
 	
   stage ('Compile Stage') {
     try {
@@ -23,15 +24,25 @@ node {
 
   stage ('Packaging Stage') {
     try {
-  	  sh "docker build -t jenkinstest:${BUILD_NUMBER} ."
+  	  sh "docker build -t containerBuild ."
   	}
     catch (exc) {
       error('Packaging failed')
     }
-  }				
+  }
+  
+  
+  stage ('Analyzing Stage') {
+    
+    try {
+  	  writeFile file: 'anchore_images', text: containerBuild
+      anchore name: 'anchore_images'
+  	}
+    catch (exc) {
+      error('Packaging failed. ' + err.message)
+    }
+  }			
 
 
-  def imageLine = 'jenkinstest:${BUILD_NUMBER}'
-  writeFile file: 'anchore_images', text: imageLine
-  anchore name: 'anchore_images'
+  
 }
