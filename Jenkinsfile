@@ -24,7 +24,7 @@ node {
 
   stage ('Packaging Stage') {
     try {
-	  docker.withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
+	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
 	    app = docker.build(containerBuild)
         app.push()
 	  }
