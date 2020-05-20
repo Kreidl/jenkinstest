@@ -103,24 +103,10 @@ pipeline {
                 }
             }
 		}
-		stage ('Image Analyzing stage')
-		{			
-			steps
-			{				
-				catchError
-				{
-					def imageLine = 'jenkinstest:${BUILD_NUMBER}'
-					writeFile file: 'anchore_images', text: imageLine
-					anchore name: 'anchore_images'
-				}
-			}
-			post
-			{
-                success
-				{
-					 echo 'Packaging stage successful'
-                }
-            }
-		}
+	}
+	node {
+	  def imageLine = 'jenkinstest:${BUILD_NUMBER}'
+	  writeFile file: 'anchore_images', text: imageLine
+	  anchore name: 'anchore_images'
 	}
 }
