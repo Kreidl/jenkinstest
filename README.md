@@ -8,7 +8,7 @@ Anchore Container Image Scanner Plugin<br/>
 Additional:
 Change the name of the configured Maven in pipeline to the maven name you gave in jenkins
 Docker and Docker-compose (Anchore container) installed<br/>
-Configure dockerCredentials as docker-hub of type secret Text
+Add the docker installation and username/password config for dockerregistry and also the url for dockerregistry (atm it is dockerhub)
 
 anchore docker container installed (https://github.com/anchore/anchore-cli)<br/>
 

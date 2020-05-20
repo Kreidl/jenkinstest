@@ -24,10 +24,9 @@ node {
 
   stage ('Packaging Stage') {
     try {
-  	  sh "docker build -t ${containerBuild} ."
-  	  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-		sh "docker login -u luke19 --password-stdin ${dockerHubPwd}"
-		sh "docker push ${containerBuild}"
+	  docker.withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
+	    app = docker.build(containerBuild)
+        app.push()
 	  }
   	}
     catch (exc) {
