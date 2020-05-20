@@ -3,7 +3,9 @@ node {
 	
   stage ('Compile Stage') {
     try {
-  	  sh 'mvn clean compile'
+      withMaven(maven: 'localMaven') {
+  	    sh 'mvn clean compile'
+  	  }
   	}
     catch (exc) {
       error('Clean compile failed')
