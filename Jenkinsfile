@@ -1,12 +1,18 @@
 node {
   def app
 	
-  stage ('Compile Stage'){
-    sh mvn clean compile
-	}	
+  stage ('Compile Stage') {
+  	try {
+  	  sh 'mvn clean compile'
+  	}
+    catch (exc) {
+      echo 'Clean compile failed'
+      throw
+    }
+  }	
 	
 	
-	stage ('Testing Stage'){			
+	stage ('Testing Stage') {			
 		steps{				
 			withMaven(maven: 'localMaven'){
 				catchError{
@@ -32,7 +38,7 @@ node {
 	}
 	
 	
-	stage ('Packaging Stage'){			
+	stage ('Packaging Stage') {			
 		steps{				
 			catchError{
 				sh 'docker build -t jenkinstest:${BUILD_NUMBER} . '
