@@ -25,6 +25,10 @@ node {
   stage ('Packaging Stage') {
     try {
   	  sh "docker build -t ${containerBuild} ."
+  	  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+		sh "docker login -u luke19 -p ${dockerHubPwd}"
+		sh "docker push ${containerBuild}"
+	  }
   	}
     catch (exc) {
       error('Packaging failed')
