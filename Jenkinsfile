@@ -26,7 +26,7 @@ node {
     try {
   	  sh "docker build -t ${containerBuild} ."
   	  withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-		sh "docker login -u luke19 -p ${dockerHubPwd}"
+		sh "docker login -u luke19 --password-stdin ${dockerHubPwd}"
 		sh "docker push ${containerBuild}"
 	  }
   	}
