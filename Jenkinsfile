@@ -36,7 +36,7 @@ node {
     
     try {
   	  writeFile file: 'anchore_images', text: containerBuild
-      anchore name: 'anchore_images'
+  	  anchore name: 'anchore_images'
   	}
     catch (exc) {
       error('Packaging failed. ' + exc.message)
