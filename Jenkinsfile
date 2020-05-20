@@ -1,11 +1,10 @@
 node {
   def app
+  def mvnTool = tool 'localMaven'
 	
   stage ('Compile Stage') {
     try {
-      withMaven(maven: 'localMaven') {
-  	    sh 'mvn clean compile'
-  	  }
+  	  sh "${mvnTool}/bin/mvn clean compile"
   	}
     catch (exc) {
       error('Clean compile failed')
