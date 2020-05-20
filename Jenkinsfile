@@ -6,8 +6,7 @@ node {
   	  sh 'mvn clean compile'
   	}
     catch (exc) {
-      echo 'Clean compile failed'
-      throw
+      error('Clean compile failed')
     }
   }	
 	
