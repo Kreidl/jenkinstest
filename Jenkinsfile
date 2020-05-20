@@ -109,7 +109,8 @@ pipeline {
 			{				
 				catchError
 				{
-					writeFile file: 'anchore_images', text: jenkinstest:${BUILD_NUMBER}
+					def imageLine = 'jenkinstest:${BUILD_NUMBER}'
+					writeFile file: 'anchore_images', text: imageLine
 					anchore name: 'anchore_images'
 				}
 			}
