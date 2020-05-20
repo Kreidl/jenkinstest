@@ -2,7 +2,7 @@ node {
   def app
 	
   stage ('Compile Stage'){
-    mvn clean compile'
+    sh mvn clean compile
 	}	
 	
 	
