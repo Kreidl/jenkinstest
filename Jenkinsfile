@@ -2,7 +2,7 @@ node {
   def app
 	
   stage ('Compile Stage') {
-  	try {
+    try {
   	  sh 'mvn clean compile'
   	}
     catch (exc) {
