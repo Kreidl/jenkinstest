@@ -3,12 +3,23 @@ node {
   def mvnTool = tool 'localMaven'
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
 	
+  stage ('Check Secrets Stage') {
+    try {
+      sh "rm trufflehog || true"
+  	  sh "docker run dxa4481/trufflehog --json https://github.com/Kreidl/jenkinstest_spring.git > trufflehog"
+  	  sh "cat trufflehog"
+  	}
+    catch (exc) {
+      error('Secret Stage failed' + exc.message)
+    }
+  }	
+
   stage ('Compile Stage') {
     try {
   	  sh "${mvnTool}/bin/mvn clean compile"
   	}
     catch (exc) {
-      error('Clean compile failed')
+      error('Clean compile failed' + exc.message)
     }
   }	
 
@@ -17,7 +28,7 @@ node {
   	  sh "${mvnTool}/bin/mvn test"
   	}
     catch (exc) {
-      error('Testing failed')
+      error('Testing failed' + exc.message)
     }
   }
   
