@@ -8,7 +8,8 @@ node {
       sh "rm trufflehog || true"
       sh 'docker run dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog'
   	  sh "cat trufflehog"
-  	}
+  	}catch (exc) {
+    }
   }	
 
   stage ('Compile Stage') {
