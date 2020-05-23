@@ -14,6 +14,7 @@ node {
   }	
 
 
+  //Not working at the moment
   /*stage ('Source Composition Analysis Stage') {
     try {
       sh 'rm owasp* || true'
@@ -31,6 +32,8 @@ node {
     sh "${mvnTool}/bin/mvn sonar:sonar"
     sh 'cat target/sonar/report-task.txt'
   }
+  
+  
   
   stage ('Compile Stage') {
     try {
@@ -72,7 +75,27 @@ node {
     catch (exc) {
       error('Packaging failed. ' + exc.message)
     }
-  }			
+  }
+  
+  
+  stage ('Deploying Stage') {
+    try {
+	  sh "docker run -d -p 8081:80801 --name tester ${containerBuild}"
+  	}
+    catch (exc) {
+      error('Deploying failed' + exc.message)
+    }
+  }
+ 
+  stage ('DAST') {
+    try {
+	  sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081"
+  	}
+    catch (exc) {
+      error('DAST failed' + exc.message)
+    }
+  } 
+
 
 
   
