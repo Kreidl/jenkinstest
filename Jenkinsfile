@@ -1,6 +1,7 @@
 node {
   def app
   def mvnTool = tool 'localMaven'
+  def sonar = tool 'sonar'
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
 	
   stage ('Check Secrets Stage') {
@@ -13,7 +14,7 @@ node {
   }	
 
 
-  stage ('Source Composition Analysis Stage') {
+  /*stage ('Source Composition Analysis Stage') {
     try {
       sh 'rm owasp* || true'
       sh 'wget "https://raw.githubusercontent.com/kreidl/jenkinstest_spring/master/owasp-dependency-check.sh" '
@@ -24,9 +25,12 @@ node {
     catch (exc) {
       error('Source Composition Analysis failed' + exc.message)
     }
+  }*/
+  
+  stage ('SAST') {
+    sh 'mvn sonar:sonar'
+    sh 'cat target/sonar/report-task.txt'
   }
-  
-  
   
   stage ('Compile Stage') {
     try {
