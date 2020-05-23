@@ -4,17 +4,27 @@ node {
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
 	
   stage ('Check Secrets Stage') {
-    sh "rm trufflehog || true"
-    
-    
+    sh "rm trufflehog || true"  
     try {
       sh 'docker run dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
   	}catch (exc) {
-    }
-    
+    }   
     sh "cat trufflehog"
   }	
 
+
+  stage ('Source Composition Analysis Stage') {
+    try {
+  	  sh "chmod +x owasp-dependency-check.sh"
+  	  sh "bash owasp-dependency-check.sh"
+  	}
+    catch (exc) {
+      error('Source Composition Analysis failed' + exc.message)
+    }
+  }
+  
+  
+  
   stage ('Compile Stage') {
     try {
   	  sh "${mvnTool}/bin/mvn clean compile"
