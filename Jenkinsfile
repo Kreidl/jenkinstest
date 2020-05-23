@@ -4,9 +4,11 @@ node {
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
 	
   stage ('Check Secrets Stage') {
+    try {
       sh "rm trufflehog || true"
       sh 'docker run dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog'
   	  sh "cat trufflehog"
+  	}
   }	
 
   stage ('Compile Stage') {
