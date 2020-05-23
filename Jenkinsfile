@@ -28,7 +28,7 @@ node {
   }*/
   
   stage ('SAST') {
-    sh 'mvn sonar:sonar'
+    sh '${mvnTool}/bin/mvn sonar:sonar'
     sh 'cat target/sonar/report-task.txt'
   }
   
