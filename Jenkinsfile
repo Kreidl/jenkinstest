@@ -15,8 +15,11 @@ node {
 
   stage ('Source Composition Analysis Stage') {
     try {
-  	  sh "chmod +x owasp-dependency-check.sh"
-  	  sh "bash owasp-dependency-check.sh"
+      sh 'rm owasp* || true'
+      sh 'wget "https://raw.githubusercontent.com/kreidl/jenkinstest_spring/master/owasp-dependency-check.sh" '
+      sh 'chmod +x owasp-dependency-check.sh'
+      sh 'bash owasp-dependency-check.sh'
+      sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
   	}
     catch (exc) {
       error('Source Composition Analysis failed' + exc.message)
