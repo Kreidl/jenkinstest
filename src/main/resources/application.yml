@@ -3,8 +3,7 @@ server:
 spring:
   application:
     name: jenkinstest
-  datasource:
-    url: jdbc:postgresql://localhost:39000/lernplattform
-    username: testuser
-    password: testpw
-    driver-class-name: org.postgresql.Driver   
+  security:
+    user:
+      name: foo
+      password: food
