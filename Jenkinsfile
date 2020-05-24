@@ -3,6 +3,8 @@ node {
   def mvnTool = tool 'localMaven'
   def sonar = tool 'sonar'
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
+  
+  checkout scm
 	
   stage ('Check Secrets Stage') {
     sh "rm trufflehog || true"
