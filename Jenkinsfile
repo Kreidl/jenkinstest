@@ -5,12 +5,14 @@ node {
   def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
 	
   stage ('Check Secrets Stage') {
-    sh "rm trufflehog || true"  
+    sh "rm trufflehog || true"
+    sh "docker rm trufflehog || true" 
     try {
-      sh 'docker run dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
+      sh 'docker run --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
   	}catch (exc) {
     }   
     sh "cat trufflehog"
+    sh "docker rm trufflehog"
   }	
 
 
@@ -96,7 +98,14 @@ node {
     }
   } 
 
-
+  stage ('Removing Stage') {
+    try {
+	  sh "docker stop tester && docker rm tester"
+  	}
+    catch (exc) {
+      error('Removing failed' + exc.message)
+    }
+  }
 
   
 }
