@@ -55,7 +55,6 @@ node {
     }
   }
   
-/*
   stage ('Packaging Stage') {
     try {
 	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
@@ -66,18 +65,7 @@ node {
     catch (exc) {
       error('Packaging failed' + exc.message)
     }
-  }*/
-  
-  stage ('Packaging Stage') {
-    try {
-	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
-	    sh "${mvnTool}/bin/mvn compile jib:build"
-	  }
-  	}
-    catch (exc) {
-      error('Packaging failed' + exc.message)
-    }
-  }  
+  }
   
   stage ('Analyzing Stage') {    
     try {
