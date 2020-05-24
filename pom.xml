@@ -70,19 +70,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
-			<plugin>
-              <groupId>org.owasp</groupId>
-              <artifactId>dependency-check-maven</artifactId>
-              <version>5.3.2</version>
-              <executions>
-                  <execution>
-                      <goals>
-                          <goal>check</goal>
-                      </goals>
-                  </execution>
-              </executions>
-            </plugin>
-			
 			<!-- Plugin for running maven tests with maven commands (for cicd)s -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
