@@ -18,8 +18,7 @@ node {
   }	
 
 
-  //Not working at the moment
-  /*stage ('Source Composition Analysis Stage') {
+  stage ('Source Composition Analysis Stage') {
     try {
       sh 'rm owasp* || true'
       sh 'wget "https://raw.githubusercontent.com/kreidl/jenkinstest_spring/master/owasp-dependency-check.sh" '
@@ -30,7 +29,7 @@ node {
     catch (exc) {
       error('Source Composition Analysis failed' + exc.message)
     }
-  }*/
+  }
   
   stage ('SAST') {
     sh "${mvnTool}/bin/mvn sonar:sonar"
