@@ -15,7 +15,7 @@ node {
     sh "cat trufflehog"
   }	
 
-
+/*
   stage ('Source Composition Analysis Stage') {
     try {
       sh 'rm owasp* || true'
@@ -28,6 +28,17 @@ node {
       error('Source Composition Analysis failed' + exc.message)
     }
   }
+ */
+
+  stage ('Source Composition Analysis Stage') {
+    try {
+  	  sh "${mvnTool}/bin/mvn org.owasp:dependency-check-maven:check"
+  	}
+    catch (exc) {
+      error('Source Composition Analysis failed' + exc.message)
+    }
+  }	
+  
   
   stage ('SAST') {
     sh "${mvnTool}/bin/mvn sonar:sonar"
