@@ -94,7 +94,7 @@ node {
 	  sh "docker run --rm -t owasp/zap2docker-stable zap-baseline.py -t http://35.228.190.112:8081/"
   	}
     catch (exc) {
-      sh "docker stop tester && docker rm tester zap"
+      sh "docker stop tester && docker rm tester"
       error('DAST failed' + exc.message)
     }
   } 
