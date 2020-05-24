@@ -82,7 +82,7 @@ node {
   
   stage ('Deploying Stage') {
     try {
-	  sh "docker run -d -p 8081:80801 --name tester ${containerBuild}"
+	  sh "docker run -d -p 8081:8081 --name tester ${containerBuild}"
   	}
     catch (exc) {
       error('Deploying failed' + exc.message)
