@@ -91,7 +91,7 @@ node {
  
   stage ('DAST') {
     try {
-	  sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081/"
+	  sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.228.190.112:8081/"
   	}
     catch (exc) {
       error('DAST failed' + exc.message)
