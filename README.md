@@ -6,8 +6,9 @@ Security Mechanisms:
 *  **Secret Scanning with (https://hub.docker.com/r/dxa4481/trufflehog)**
 //*  **OWASP Dependency Check with (https://hub.docker.com/r/owasp/dependency-check)** --> Will be very slow on first run due to CVE updates
 *  **SonarQube Scanner**
-*  **ZAP Scanner**
 *  **Anchore Container Image Scanner For Container Check on Policy and Vulernabilities**
+*  **ZAP Scanner**
+
 
 
 PlugIns needed:
@@ -56,3 +57,6 @@ Go to my Account. Select Security and Generate Tokens. Choose a name and click g
 
 Additionally configure Global tools
 Go to SonarQube Scanner add, Set Name to sonar and check the checkbox on install automatically
+
+
+For ZAP Scanning there should be a running application and the docker container must reach the application
