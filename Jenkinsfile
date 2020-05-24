@@ -8,13 +8,11 @@ node {
 	
   stage ('Check Secrets Stage') {
     sh "rm trufflehog || true"
-    sh "docker rm trufflehog || true" 
     try {
-      sh 'docker run --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
+      sh 'docker run --rm --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
   	}catch (exc) {
     }   
     sh "cat trufflehog"
-    sh "docker rm trufflehog"
   }	
 
 
