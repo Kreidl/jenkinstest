@@ -55,7 +55,7 @@ node {
     }
   }
   
-
+/*
   stage ('Packaging Stage') {
     try {
 	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
@@ -66,8 +66,18 @@ node {
     catch (exc) {
       error('Packaging failed' + exc.message)
     }
-  }
+  }*/
   
+  stage ('Packaging Stage') {
+    try {
+	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
+	    sh "mvn compile jib:build"
+	  }
+  	}
+    catch (exc) {
+      error('Packaging failed' + exc.message)
+    }
+  }  
   
   stage ('Analyzing Stage') {    
     try {
@@ -91,7 +101,7 @@ node {
  
   stage ('DAST') {
     try {
-	  sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081"
+	  sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081/"
   	}
     catch (exc) {
       error('DAST failed' + exc.message)
