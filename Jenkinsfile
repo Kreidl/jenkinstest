@@ -71,7 +71,7 @@ node {
   stage ('Packaging Stage') {
     try {
 	  withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
-	    sh "mvn compile jib:build"
+	    sh "${mvnTool}/bin/mvn compile jib:build"
 	  }
   	}
     catch (exc) {
