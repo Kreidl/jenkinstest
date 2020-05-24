@@ -7,7 +7,7 @@ Security Mechanisms:
 //*  **OWASP Dependency Check with (https://hub.docker.com/r/owasp/dependency-check)** --> Will be very slow on first run due to CVE updates
 *  **SonarQube Scanner**
 *  **Anchore Container Image Scanner For Container Check on Policy and Vulernabilities**
-*  **ZAP Scanner**
+*  **ZAP Scanner** --> See More Scanner Methods on https://www.zaproxy.org/docs/docker/
 
 
 
