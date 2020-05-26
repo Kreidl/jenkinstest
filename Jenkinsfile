@@ -7,7 +7,7 @@ node {
   checkout scm
 	
   stage ('Check Secrets Stage') {
-    sh "rm trufflehog || true"
+    sh "rm trufflehog.txt || true"
     try {
       sh 'docker run --rm --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog.txt' 	  
   	}catch (exc) {
