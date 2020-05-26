@@ -31,7 +31,6 @@ node {
       sh 'wget "https://raw.githubusercontent.com/kreidl/jenkinstest_spring/master/owasp-dependency-check.sh" '
       sh 'chmod +x owasp-dependency-check.sh'
       sh 'bash owasp-dependency-check.sh'
-      sh 'cat odc-reports/dependency-check-report.html'
       
       publishHTML (target: [
         allowMissing: false,
@@ -60,7 +59,6 @@ node {
   
   stage ('SAST') {
     sh "${mvnTool}/bin/mvn sonar:sonar"
-    sh 'cat target/sonar/report-task.txt'
     
     publishHTML (target: [
         allowMissing: false,
