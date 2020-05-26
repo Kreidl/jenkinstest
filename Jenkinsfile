@@ -37,7 +37,7 @@ node {
         keepAll: true,
         reportDir: 'odc-reports',
         reportFiles: 'dependency-check-report.html',
-        reportName: "OWASP Report"
+        reportName: "OWASP Dependency Report"
       ])
   	}
     catch (exc) {
