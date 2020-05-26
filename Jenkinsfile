@@ -82,7 +82,18 @@ node {
 
   stage ('Testing Stage') {
     try {
-  	  sh "${mvnTool}/bin/mvn test"
+      sh "rm test.txt || true"
+      
+  	  sh "${mvnTool}/bin/mvn test > test.txt"
+  	  
+  	  publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: './',
+        reportFiles: 'test.txt',
+        reportName: "Maven Test Report"
+      ])
   	}
     catch (exc) {
       error('Testing failed' + exc.message)
@@ -123,6 +134,9 @@ node {
  
   stage ('DAST') {
     try {
+    
+      sh "rm zap.txt || true"
+      
 	  sh "docker run --rm -t owasp/zap2docker-stable zap-baseline.py -t http://35.228.190.112:8081/ > zap.txt"
 	  
 	  publishHTML (target: [
