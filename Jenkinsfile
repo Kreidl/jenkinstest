@@ -9,7 +9,7 @@ node {
   stage ('Check Secrets Stage') {
     sh "rm trufflehog || true"
     try {
-      sh 'docker run --rm --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog' 	  
+      sh 'docker run --rm --name trufflehog dxa4481/trufflehog --regex https://github.com/Kreidl/jenkinstest_spring.git > trufflehog.txt' 	  
   	}catch (exc) {
     }   
     sh "cat trufflehog"
@@ -19,7 +19,7 @@ node {
         alwaysLinkToLastBuild: false,
         keepAll: true,
         reportDir: './',
-        reportFiles: 'trufflehog',
+        reportFiles: 'trufflehog.txt',
         reportName: "Trufflehog Report"
       ])
   }	
