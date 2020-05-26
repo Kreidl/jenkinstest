@@ -15,6 +15,7 @@ PlugIns needed:
 Pipeline Maven Integration<br/>
 SonarQube Scanner<br/>
 Anchore Container Image Scanner Plugin<br/>
+HTML Publisher (For Showing Logdata)<br/>
 
 
 Additional:

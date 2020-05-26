@@ -13,6 +13,15 @@ node {
   	}catch (exc) {
     }   
     sh "cat trufflehog"
+    
+    publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: './',
+        reportFiles: 'trufflehog',
+        reportName: "Trufflehog Report"
+      ])
   }	
 
 
@@ -23,6 +32,15 @@ node {
       sh 'chmod +x owasp-dependency-check.sh'
       sh 'bash owasp-dependency-check.sh'
       sh 'cat odc-reports/dependency-check-report.html'
+      
+      publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: 'odc-reports',
+        reportFiles: 'dependency-check-report.html',
+        reportName: "OWASP Report"
+      ])
   	}
     catch (exc) {
       error('Source Composition Analysis failed' + exc.message)
@@ -43,6 +61,15 @@ node {
   stage ('SAST') {
     sh "${mvnTool}/bin/mvn sonar:sonar"
     sh 'cat target/sonar/report-task.txt'
+    
+    publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: 'target/sonar',
+        reportFiles: 'report-task.txt',
+        reportName: "Sonarscan Report"
+      ])
   }
   
   
