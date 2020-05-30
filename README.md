@@ -23,7 +23,10 @@ Change the name of the configured Maven in pipeline to the maven name you gave i
 Docker and Docker-compose (Anchore container) installed<br/>
 Add the docker installation and username/password config for dockerregistry and also the url for dockerregistry (atm it is dockerhub)
 
-The repo on dockerhub should be public
+If the Registry is not public then there is this command needed:<br/>
+docker-compose exec api anchore-cli registry add REGISTRYURL REGISTRY_USERNAME REGISTRY_PW<br/>
+For dockerhub it is: docker-compose exec api anchore-cli registry add docker.io REGISTRY_USERNAME REGISTRY_PW<br/>
+
 
 If there is this error: Cannot autolaunch D-Bus without X11 $DISPLAY<br/>
 Use: sudo apt-get remove -y golang-docker-credential-helpers
