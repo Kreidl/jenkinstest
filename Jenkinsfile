@@ -114,10 +114,8 @@ node {
   
   stage ('Analyzing Stage') {    
     try {
-      withDockerRegistry(credentialsId: 'docker', toolName: 'localDocker', url: 'https://index.docker.io/v1/') {
 	    writeFile file: 'anchore_images', text: containerBuild
   	    anchore name: 'anchore_images'
-	  }
   	}
     catch (exc) {
       error('Packaging failed. ' + exc.message)
