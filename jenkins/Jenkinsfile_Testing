@@ -2,6 +2,8 @@ node {
   def app
   def mvnTool = tool 'localMaven'
   
+  checkout scm
+  
 
   stage ('Compile Stage') {
     try {
