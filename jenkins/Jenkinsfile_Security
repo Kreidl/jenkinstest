@@ -5,6 +5,15 @@ node {
   def containerBuild = "luke19/sec_jenkinstest:${BUILD_NUMBER}"
   
   checkout scm
+  
+  stage ('Compile Stage') {
+    try {
+  	  sh "${mvnTool}/bin/mvn clean compile"
+  	}
+    catch (exc) {
+      error('Clean compile failed' + exc.message)
+    }
+  }	
 	
   stage ('Check Secrets Stage') {
     sh "rm trufflehog.txt || true"
@@ -71,14 +80,7 @@ node {
   
   
   
-  stage ('Compile Stage') {
-    try {
-  	  sh "${mvnTool}/bin/mvn clean compile"
-  	}
-    catch (exc) {
-      error('Clean compile failed' + exc.message)
-    }
-  }	
+
 
   stage ('Testing Stage') {
     try {
