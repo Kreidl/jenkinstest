@@ -19,10 +19,18 @@ node {
       sh "rm test.txt || true"
       
   	  sh "${mvnTool}/bin/mvn test > test.txt"
-  	  
   	}
     catch (exc) {
       error('Testing failed' + exc.message)
+    }finally{
+    	publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: './',
+        reportFiles: 'test.txt',
+        reportName: "Maven Test Report"
+      ])
     }
   }
 }
