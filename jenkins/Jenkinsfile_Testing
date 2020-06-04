@@ -38,8 +38,8 @@ node {
     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 	    sh "git checkout integration"
     	sh "git merge origin/unittesting"
-    	sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/jenkinstest_spring.git HEAD:integration"
-    	
+    	//sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/jenkinstest_spring.git HEAD:integration"
+    	sh "git push https://$GIT_USERNAME:$GIT_PASSWORD@github.com/jenkinstest_spring"
 	}
 
   }
