@@ -2,7 +2,7 @@ node {
   def app
   def mvnTool = tool 'localMaven'
   def sonar = tool 'sonar'
-  def containerBuild = "luke19/jenkinstest:${BUILD_NUMBER}"
+  def containerBuild = "luke19/sec_jenkinstest:${BUILD_NUMBER}"
   
   checkout scm
 	
@@ -125,7 +125,7 @@ node {
   
   stage ('Deploying Stage') {
     try {
-	  sh "docker run -d -p 8081:8081 --name tester ${containerBuild}"
+	  sh "docker run -d -p 8085:8081 --name tester ${containerBuild}"
   	}
     catch (exc) {
       error('Deploying failed' + exc.message)
@@ -137,7 +137,7 @@ node {
     
       sh "rm zap.txt || true"
       
-	  sh "docker run --rm -t owasp/zap2docker-stable zap-baseline.py -t http://35.228.190.112:8081/ > zap.txt"
+	  sh "docker run --rm -t owasp/zap2docker-stable zap-baseline.py -t http://35.228.190.112:8085/ > zap.txt"
   	}
     catch (exc) {
     }

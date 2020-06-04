@@ -1,0 +1,34 @@
+node {
+  def app
+  def mvnTool = tool 'localMaven'
+  
+
+  stage ('Compile Stage') {
+    try {
+  	  sh "${mvnTool}/bin/mvn clean compile"
+  	}
+    catch (exc) {
+      error('Clean compile failed' + exc.message)
+    }
+  }	
+
+  stage ('Testing Stage') {
+    try {
+      sh "rm test.txt || true"
+      
+  	  sh "${mvnTool}/bin/mvn test > test.txt"
+  	  
+  	  publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: './',
+        reportFiles: 'test.txt',
+        reportName: "Maven Test Report"
+      ])
+  	}
+    catch (exc) {
+      error('Testing failed' + exc.message)
+    }
+  }
+}
