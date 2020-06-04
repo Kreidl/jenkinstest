@@ -3,7 +3,3 @@ server:
 spring:
   application:
     name: jenkinstest
-  security:
-    user:
-      name: foo
-      password: food
