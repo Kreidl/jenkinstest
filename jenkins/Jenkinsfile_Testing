@@ -33,4 +33,11 @@ node {
       ])
     }
   }
+  
+  stage ('Merging Stage') {
+    sh "git checkout integration"
+    sh "git merge unittesting"
+    sh "git push origin integration"
+  
+  }
 }
