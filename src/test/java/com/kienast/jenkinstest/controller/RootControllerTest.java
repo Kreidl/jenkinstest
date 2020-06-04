@@ -28,7 +28,7 @@ public class RootControllerTest {
     @Test
     public void testRoot() throws Exception {
         this.mockMvc.perform(get("/").header("host", "localhost:8081"))
-                .andExpect(status().isOk())
+                .andExpect(status().isNotFound())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
 
     }
