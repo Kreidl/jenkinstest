@@ -2,6 +2,15 @@
 A repo for testing jenkins
 
 
+
+The Repo uses these branches:
+* production --> Runs production code (last step)
+* integration --> get merges from unittesting and do securitytesting
+* unittesting and then merge automatically into integration
+
+For merge you need to add the Git credentials in the credentials with the variablename defined in the merging stage of testing
+
+
 Security Mechanisms:
 *  **Secret Scanning with (https://hub.docker.com/r/dxa4481/trufflehog)**
 *  **OWASP Dependency Check with (https://hub.docker.com/r/owasp/dependency-check)** --> Will be very slow on first run due to CVE updates

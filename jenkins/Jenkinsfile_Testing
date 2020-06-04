@@ -35,12 +35,12 @@ node {
   }
   
   stage ('Merging Stage') {
-    withCredentials([usernameColonPassword(credentialsId: 'github', variable: 'gitlogin')]) {
+    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 	    sh "git checkout integration"
     	sh "git merge origin/unittesting"
     	sh "git push origin/integration"
+    	sh "'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/jenkinstest_spring/jenkinstest_spring.git'"
 	}
-    
-  
+
   }
 }
