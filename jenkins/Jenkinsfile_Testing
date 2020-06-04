@@ -3,16 +3,6 @@ node {
   def mvnTool = tool 'localMaven'
   
   checkout scm
-  
-
-  stage ('Compile Stage') {
-    try {
-  	  sh "${mvnTool}/bin/mvn clean compile"
-  	}
-    catch (exc) {
-      error('Clean compile failed' + exc.message)
-    }
-  }	
 
   stage ('Testing Stage') {
     try {
@@ -38,14 +28,13 @@ node {
     
 	sh "git checkout integration"
     sh "git merge origin/unittesting"
-    //sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/jenkinstest_spring.git HEAD:integration"
-    	
-    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-    	sh "git config --global user.name '${GIT_USERNAME}'"
-		sh "git config --global user.email ${GIT_PASSWORD}"
-		
-    	sh "git push origin integration"
-	}
+    
+	withCredentials([usernamePassword(credentialsId: 'my-credentials-id', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){    
+    sh('''
+        git config --local credential.helper "!f() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; f"
+        git push origin HEAD:integration
+    ''')
+}
 
   }
 }
