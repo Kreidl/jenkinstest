@@ -139,7 +139,7 @@ node {
     
       sh "rm zap.txt || true"
       
-	  sh "docker run --rm -t owasp/zap2docker-stable zap-full-scan.py -t http://35.228.190.112:8085/ > zap.txt"
+	  sh "docker run --rm -t owasp/zap2docker-stable zap-full-scan.py -t http://35.228.73.175:8085/ > zap.txt"
   	}
     catch (exc) {
     }
