@@ -33,4 +33,14 @@ node {
       ])
     }
   }
+  
+  stage ('Merging Stage') {
+    withCredentials([usernameColonPassword(credentialsId: 'github', variable: 'gitlogin')]) {
+	    sh "git checkout integration"
+    	sh "git merge origin/unittesting"
+    	sh "git push origin/integration"
+	}
+    
+  
+  }
 }

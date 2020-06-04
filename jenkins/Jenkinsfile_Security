@@ -125,7 +125,7 @@ node {
   
   stage ('Deploying Stage') {
     try {
-	  sh "docker run -d -p 8085:8081 --name tester ${containerBuild}"
+	  sh "docker run -d -p 8085:8081 --name sec_tester ${containerBuild}"
   	}
     catch (exc) {
       error('Deploying failed' + exc.message)
@@ -151,7 +151,7 @@ node {
           reportName: "OWASP ZAP Report"
       ])
       
-      sh "docker stop tester && docker rm tester"
+      sh "docker stop sec_tester && docker rm sec_tester"
   } 
 
 
