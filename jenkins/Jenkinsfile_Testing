@@ -33,11 +33,7 @@ node {
       ])
     }
   }
-  
-  stage ('Merging Stage') {
-    sh "git checkout integration"
-    sh "git merge origin/unittesting"
-    sh "git push origin integration"
+    
   
   }
 }
