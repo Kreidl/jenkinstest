@@ -154,20 +154,16 @@ node {
       ])
       
       sh "docker stop sec_tester && docker rm sec_tester"
-  } 
+  }
+  
+  stage('Prompt for Production') {
+        steps {
+            input 'Merge to production?'
+        }
+    }
   
   
   stage ('Production Stage'){
-  	
-  	when {
-        expression {
-            input message: "Deploy to production?",
-            ok: 'Yes'
-            // if input is Aborted, the whole build will fail, otherwise
-            // we must return true to continue
-            return true
-        }
-    }
   	
   	sh "git checkout production"
     sh "git merge origin/integration"
