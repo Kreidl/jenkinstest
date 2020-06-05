@@ -2,7 +2,7 @@ node {
   def app
   def mvnTool = tool 'localMaven'
   
-  //checkout scm
+  checkout scm
 
   stage ('Testing Stage') {
     try {

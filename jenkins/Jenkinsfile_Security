@@ -4,7 +4,7 @@ node {
   def sonar = tool 'sonar'
   def containerBuild = "luke19/sec_jenkinstest:${BUILD_NUMBER}"
   
-  //checkout scm
+  checkout scm
   
   stage ('Compile Stage') {
     try {
