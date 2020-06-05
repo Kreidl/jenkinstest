@@ -158,7 +158,7 @@ node {
   
   stage('Prompt for Production') {
       input 'Merge to production?'
-    }
+  }
   
   
   stage ('Production Stage'){
