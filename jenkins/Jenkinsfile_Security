@@ -157,9 +157,7 @@ node {
   }
   
   stage('Prompt for Production') {
-        steps {
-            input 'Merge to production?'
-        }
+      input 'Merge to production?'
     }
   
   
