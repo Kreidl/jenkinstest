@@ -3,10 +3,10 @@ A repo for testing jenkins
 
 
 
-The Repo uses these branches:
-* production --> creates docker container and Runs production code (last step)
-* integration --> get merges from unittesting do securitytesting and merge code into production
-* unittesting and then merge automatically into integration
+The Repo uses these branches (each branch have its own Jenkinsfile):
+* production (Jenkinsfile_Production) --> creates docker container and Runs production code (last step)
+* integration (Jenkinsfile_Security) --> get merges from unittesting do securitytesting and merge code into production
+* unittesting (Jenkinsfile_Testing) --> unittesting and then merge automatically into integration
 
 For merge you need to add the Git credentials in the credentials with the variablename defined in the merging stage of testing
 
