@@ -139,7 +139,7 @@ node {
     
       sh "rm zap.txt || true"
       
-	  sh "docker run --rm -t owasp/zap2docker-stable zap-full-scan.py -t http://35.228.73.175:8085/ > zap.txt"
+	  sh "docker run --rm -t owasp/zap2docker-stable zap-full-scan.py -t http://35.228.92.28:8085/ > zap.txt"
   	}
     catch (exc) {
     }
@@ -154,7 +154,26 @@ node {
       ])
       
       sh "docker stop sec_tester && docker rm sec_tester"
-  } 
+  }
+  
+  stage('Prompt for Production') {
+      input 'Merge to production?'
+  }
+  
+  
+  stage ('Production Stage'){
+  	
+  	sh "git checkout production"
+    sh "git merge origin/integration"
+    
+	withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){    
+	    sh('''
+	        git config --local credential.helper "!f() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; f"
+	        git push origin production
+	    ''')
+	}
+  
+  }
 
 
   
