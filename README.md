@@ -1,5 +1,5 @@
 # jenkinstesting
-A repo for testing jenkins
+A repo for testing jenkins with automatic branching and auditing
 
 
 
