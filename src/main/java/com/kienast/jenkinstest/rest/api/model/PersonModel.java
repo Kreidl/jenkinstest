@@ -1,4 +1,4 @@
-package acom.kienast.jenkinstest.rest.api.model;
+package com.kienast.jenkinstest.rest.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;

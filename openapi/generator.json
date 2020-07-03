@@ -1,7 +1,7 @@
 {
 	"configPackage":"com.kienast.jenkinstest",
 	"apiPackage":"com.kienast.jenkinstest.rest.api",
-	"modelPackage":"acom.kienast.jenkinstest.rest.api.model",
+	"modelPackage":"com.kienast.jenkinstest.rest.api.model",
 	"interfaceOnly":true,
 	"java8":false,
 	"modelNameSuffix": "Model",

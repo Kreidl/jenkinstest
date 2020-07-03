@@ -24,15 +24,15 @@ import java.util.List;
 import java.util.Map;
 
 @Validated
-@Api(value = "getPeople", description = "the getPeople API")
-public interface GetPeopleApi {
+@Api(value = "getPerson", description = "the getPerson API")
+public interface GetPersonApi {
 
-    @ApiOperation(value = "GetPeople", nickname = "getPeople", notes = "", response = PersonModel.class, responseContainer = "List", tags={ "getPeople", })
+    @ApiOperation(value = "Get Person", nickname = "getPerson", notes = "", response = PersonModel.class, tags={ "getPerson", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Schemas", response = PersonModel.class, responseContainer = "List") })
-    @RequestMapping(value = "/getPeople",
+        @ApiResponse(code = 200, message = "Schemas", response = PersonModel.class) })
+    @RequestMapping(value = "/getPerson/{personname}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<PersonModel>> getPeople();
+    ResponseEntity<PersonModel> getPerson(@ApiParam(value = "a Name of a Person",required=true) @PathVariable("personname") String personname);
 
 }
