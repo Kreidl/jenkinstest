@@ -16,12 +16,15 @@ import com.kienast.jenkinstest.rest.api.model.PersonModel;
 @RestController
 @RequestMapping(value= "/api")
 public class PeopleController implements GetPeopleApi, GetPersonApi {
+	
+	
 
 	@Override
-	@RequestMapping(value= "/getPerson")
+	@RequestMapping(value= "/getPerson/{personname}")
 	public ResponseEntity<PersonModel> getPerson(String personname) {
-		// TODO Auto-generated method stub
 		PersonModel pm = new PersonModel();
+		
+		pm.setName(personname);
 				
 		return ResponseEntity.ok(pm);
 	}
@@ -30,7 +33,13 @@ public class PeopleController implements GetPeopleApi, GetPersonApi {
 	@RequestMapping(value= "/getPeople")
 	public ResponseEntity<List<PersonModel>> getPeople() {
 		List<PersonModel> pmList = new ArrayList<PersonModel>();
-		// TODO Auto-generated method stub
+		
+		pmList.add(new PersonModel());
+		pmList.add(new PersonModel());
+		
+		for (PersonModel pm : pmList) {
+			pm.setName("Person in List");
+		}
 		return ResponseEntity.ok(pmList);
 	}
 
