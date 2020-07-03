@@ -1,0 +1,32 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Test Service
+servers:
+  - url: api/test
+paths:
+  /getPeople:
+    get:
+      summary: GetPeople
+      operationId: getPeople
+      tags:
+        -  getPeople
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/People'
+components:
+  schemas:
+    People:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+    Person:
+      required:
+        - name
+      properties:
+        name:
+          type: string
