@@ -1,23 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # jenkinstesting
 A repo for testing jenkins with automatic branching and auditing
-=======
-
-# OpenAPI generated API stub
-
-Spring Framework stub
->>>>>>> refs/remotes/origin/integration
-=======
-# jenkinstesting
-A repo for testing jenkins
->>>>>>> refs/remotes/origin/integration
 
 
 The Repo uses these branches (each branch have its own Jenkinsfile):
 * production (Jenkinsfile_Production) --> creates docker container and Runs production code (last step)
-* integration (Jenkinsfile_Security) --> get merges from unittesting do securitytesting and merge code into production
-* unittesting (Jenkinsfile_Testing) --> unittesting and then merge automatically into integration
+* integration (Jenkinsfile_Security) --> get merges from unittesting do securitytesting and merge code into production --> Inactive during alone development
+* unittesting (Jenkinsfile_Testing) --> unittesting and then merge automatically into integration (or production atm)
+* multiple branches --> Here goes the development and then a PR into unittesting
 
 For merge you need to add the Git credentials in the credentials with the variablename defined in the merging stage of testing
 
@@ -85,3 +74,12 @@ Go to SonarQube Scanner add, Set Name to sonar and check the checkbox on install
 
 For ZAP Scanning there should be a running application and the docker container must reach the application
 
+
+## API:
+openapigenerator is used see openapi folder
+
+## Workflow:
+Requests are defined under com.kienast.jenkinstest.controller.
+The Controllers call the peopleservice under com.kienast.jenkinstest.service.
+Based on the Request the ServiceImpl calls the COmmand Class (com.kienast.jenkinstest.command), which then calls the peoplerepository under com.kinest.jenkinstest.repository.
+The Repository holds Dummy data which should be retrieved from the db in production.

@@ -35,4 +35,13 @@ public interface GetPeopleApi {
         method = RequestMethod.GET)
     ResponseEntity<List<PersonModel>> getPeople();
 
+
+    @ApiOperation(value = "Get Person", nickname = "getPerson", notes = "", response = PersonModel.class, tags={ "getPerson", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Schemas", response = PersonModel.class) })
+    @RequestMapping(value = "/getPeople/{personname}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<PersonModel> getPerson(@ApiParam(value = "a Name of a Person",required=true) @PathVariable("personname") String personname);
+
 }

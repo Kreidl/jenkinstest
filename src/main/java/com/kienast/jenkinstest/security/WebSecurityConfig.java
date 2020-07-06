@@ -1,4 +1,4 @@
-package com.kienast.jenkinstest;
+package com.kienast.jenkinstest.security;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

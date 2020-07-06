@@ -1,4 +1,4 @@
-package com.kienast.jenkinstest;
+package com.kienast.jenkinstest.config;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonTokenId;

@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.kienast.jenkinstest.WebSecurityConfig;
+import com.kienast.jenkinstest.security.WebSecurityConfig;
 
 @WebMvcTest(RootController.class)
 @AutoConfigureMockMvc(addFilters = false)

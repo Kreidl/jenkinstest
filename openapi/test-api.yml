@@ -18,7 +18,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/People'
-  /getPerson/{personname}:
+  /getPeople/{personname}:
     get:
       summary: Get Person
       operationId: getPerson
