@@ -2,7 +2,6 @@
 A repo for testing jenkins
 
 
-
 The Repo uses these branches (each branch have its own Jenkinsfile):
 * production (Jenkinsfile_Production) --> creates docker container and Runs production code (last step)
 * integration (Jenkinsfile_Security) --> get merges from unittesting do securitytesting and merge code into production
