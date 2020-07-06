@@ -1,5 +1,17 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# jenkinstesting
+A repo for testing jenkins with automatic branching and auditing
+=======
+
+# OpenAPI generated API stub
+
+Spring Framework stub
+>>>>>>> refs/remotes/origin/integration
+=======
 # jenkinstesting
 A repo for testing jenkins
+>>>>>>> refs/remotes/origin/integration
 
 
 
