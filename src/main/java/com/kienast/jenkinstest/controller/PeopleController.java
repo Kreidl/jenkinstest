@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import com.kienast.jenkinstest.service.PeopleService;
 public class PeopleController implements PeopleApi {
 	
 	@Autowired
+	@Qualifier("peopleService")
 	private PeopleService peopleService;
 
 	@Override

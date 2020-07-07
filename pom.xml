@@ -32,7 +32,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
-			<!-- Plugin for running maven tests with maven commands (for cicd)s -->
+			<!-- Plugin for running maven tests with maven commands -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
