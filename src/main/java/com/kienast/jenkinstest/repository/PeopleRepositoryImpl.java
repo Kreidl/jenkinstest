@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.kienast.jenkinstest.exception.PersonNotFoundException;
 import com.kienast.jenkinstest.model.Person;
 
-@Service
+@Component
 public class PeopleRepositoryImpl implements PeopleRepository {
 
-	private List<Person> people = new ArrayList<>();
+	private static List<Person> people; 
 	
-	@PostConstruct
-	private void initalizeDummyData() {
+	private void initializeDummyData() {
+		
+		people = new ArrayList<>();
 		Person person1 = new Person("Test1");
 		Person person2 = new Person("Test2");
 		Person person3 = new Person("Test3");
@@ -32,6 +32,7 @@ public class PeopleRepositoryImpl implements PeopleRepository {
 	
 	@Override
 	public Person findPerson(String personName) {
+		initializeDummyData();
 		return people.stream().filter(findByName(personName)).findFirst()
 				.orElseThrow(() -> new PersonNotFoundException(personName));
 	}
@@ -42,6 +43,7 @@ public class PeopleRepositoryImpl implements PeopleRepository {
 
 	@Override
 	public List<Person> getPeople() {
+		initializeDummyData();
 		return people.stream().collect(Collectors.toList());
 	}
 
