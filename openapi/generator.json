@@ -1,5 +1,5 @@
 {
-	"configPackage":"com.kienast.jenkinstest",
+	"configPackage":"com.kienast.jenkinstest.config",
 	"apiPackage":"com.kienast.jenkinstest.rest.api",
 	"modelPackage":"com.kienast.jenkinstest.rest.api.model",
 	"interfaceOnly":true,

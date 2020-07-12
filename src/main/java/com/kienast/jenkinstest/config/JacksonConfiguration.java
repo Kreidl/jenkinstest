@@ -1,4 +1,4 @@
-package com.kienast.jenkinstest;
+package com.kienast.jenkinstest.config;
 
 import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

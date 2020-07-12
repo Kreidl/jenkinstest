@@ -1,16 +1,16 @@
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: Test Service
+  title: People Service
 servers:
-  - url: api/test
+  - url: api/people
 paths:
-  /getPeople:
+  /people:
     get:
       summary: GetPeople
       operationId: getPeople
       tags:
-        -  getPeople
+        -  people
       responses:
         200:
           description: Schemas
@@ -18,12 +18,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/People'
-  /getPerson/{personname}:
+  /people/{personname}:
     get:
       summary: Get Person
       operationId: getPerson
       tags:
-        -  getPerson
+        -  people
       parameters:
         - $ref: "#/components/parameters/personname"
       responses:
